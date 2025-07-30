@@ -41,26 +41,19 @@ export default function Words() {
         <main className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
             {/* Hero Section */}
             <section
-                className="relative h-[300px] md:h-[400px] bg-cover bg-center"
+                className="relative h-[250px] md:h-[400px] bg-cover bg-center"
                 style={{
                     backgroundImage: `url('https://images.unsplash.com/photo-1529070538774-1843cb3265df?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2h1cmNoJTIwbWVldGluZ3xlbnwwfHwwfHx8MA%3D%3D')`,
                 }}
             >
-                {/* Faint oversized background text */}
-                <div className="absolute inset-0 flex items-center justify-center z-0">
-                    <h2 className="text-[12vw] font-extrabold text-white/10 whitespace-nowrap tracking-tight">
-                        MEETING SCHEDULE
-                    </h2>
-                </div>
-
                 {/* Overlay for darkening */}
                 <div className="absolute inset-0 bg-black/40 z-10" />
 
                 {/* Foreground text */}
-                <h1 className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white text-6xl md:text-7xl font-bold tracking-tight text-center px-4">
+                <h1 className="absolute top-1/2 left-1/2 z-20 -translate-x-1/2 -translate-y-1/2 text-white text-6xl md:text-7xl font-bold tracking-tight text-center px-4  opacity-90">
                     Meeting
                     <br />
-                    Schedule
+                    Schedule.
                 </h1>
             </section>
 
@@ -71,15 +64,15 @@ export default function Words() {
                         key={meeting.day}
                         className={`relative h-[220px] rounded-2xl shadow-lg bg-gradient-to-br ${meeting.color} text-white p-6 overflow-hidden`}
                     >
-                        <div className="absolute -top-6 -left-4 text-[9rem] font-extrabold opacity-20 select-none pointer-events-none">
+                        <div className="absolute -top-16 -left-4 text-[9rem] font-extrabold opacity-20 select-none pointer-events-none">
                             {meeting.day}
                         </div>
                         <div className="z-10 relative ">
-                            <div className="mb-3">{meeting.icon}</div>
+                            <div className="mt-23 ">{meeting.icon}</div>
                             <h2 className="text-2xl font-bold">
                                 {meeting.title}
                             </h2>
-                            <p className="text-white/90 mt-2">
+                            <p className="text-white/90 mt-2YYY">
                                 {meeting.location}
                             </p>
                         </div>

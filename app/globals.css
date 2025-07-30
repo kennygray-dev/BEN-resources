@@ -1,0 +1,195 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --font-sans: 'DM Sans', Helvetica, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  /* Remove default mobile browser behaviors */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  /* Ensure full viewport height on mobile */
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for better mobile support */
+  /* Prevent overscroll bounce and red background */
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+  -webkit-overscroll-behavior: none;
+  -webkit-overscroll-behavior-y: none;
+}
+
+/* Remove tap highlights and selections for app-like feel */
+*, *::before, *::after {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Allow text selection only where needed */
+p, span {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* PWA Safe Area Support */
+.safe-area-inset {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Touch-friendly interactions */
+.touch-manipulation {
+  touch-action: manipulation;
+}
+
+.touch-pan-y {
+  touch-action: pan-y;
+}
+
+/* Word-by-word fade-in animation */
+@keyframes wordFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.word-fade {
+  opacity: 0;
+  animation: wordFadeIn 0.6s ease-out forwards;
+}
+
+/* Mobile-first responsive improvements */
+@media (max-width: 640px) {
+  /* Improve touch targets on mobile */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Better spacing for mobile */
+  .word-fade {
+    animation-duration: 0.4s;
+  }
+}
+
+/* PWA specific styles */
+@media (display-mode: standalone) {
+  body {
+    /* Remove any remaining browser UI remnants */
+    overflow-x: hidden;
+  }
+  
+  /* Add subtle app-like shadow to main content areas */
+  main {
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* iOS specific PWA improvements */
+@supports (-webkit-backdrop-filter: blur(10px)) {
+  .ios-blur {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* Smooth scrolling for better mobile experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Prevent overscroll bounce on iOS and Android */
+body {
+  overscroll-behavior: none;
+}
+
+html {
+  overscroll-behavior: none;
+  overscroll-behavior-y: none;
+}
+
+/* Additional fix for mobile browsers */
+body, html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Loading states and micro-interactions */
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 0.6s linear;
+  pointer-events: none;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+}
